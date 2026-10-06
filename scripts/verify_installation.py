@@ -673,9 +673,10 @@ def print_summary():
     optional_cats = {"Optional"}
     for cat, items in categories.items():
         cat_passed = sum(1 for _, s, _ in items if s == "PASS")
+        cat_failed = sum(1 for _, s, _ in items if s == "FAIL")
         cat_total = len(items)
         is_optional = cat in optional_cats
-        if cat_passed == cat_total:
+        if cat_failed == 0:
             cat_indicator = PASS
         elif is_optional:
             cat_indicator = f"{SKIP} (not required)"
